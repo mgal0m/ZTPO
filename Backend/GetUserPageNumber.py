@@ -1,10 +1,9 @@
 import httplib2
 from bs4 import BeautifulSoup
 import re
+from const import *
 
 class GetUserPageNumber():
-    basicUrl = "http://suw.biblos.pk.edu.pl/userHomepage&uId="
-    basicUrl2 = "&rel=BPP-author"
     userId = ""
     source = ""
 
@@ -13,8 +12,7 @@ class GetUserPageNumber():
 
     def getSource(self):
         http = httplib2.Http()
-        status, response = http.request(self.basicUrl+self.userId+
-                                        self.basicUrl2)
+        status, response = http.request(BASE_URL+PUB_NUM_URL+self.userId)
         soup = BeautifulSoup(response, 'html.parser')
         self.source = soup
 

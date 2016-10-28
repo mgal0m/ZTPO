@@ -1,9 +1,9 @@
 import httplib2
 from bs4 import BeautifulSoup
 import re
+from const import *
 
 class GetUserId():
-    basicUrl = "https://suw.biblos.pk.edu.pl/browseByAuthor&letter="
     name = ""
     surname = ""
     firstLetter = ""
@@ -16,7 +16,7 @@ class GetUserId():
 
     def getSource(self):
         http = httplib2.Http()
-        status, response = http.request(self.basicUrl+self.firstLetter)
+        status, response = http.request(BASE_URL+AUTHOR_URL+self.firstLetter)
         soup = BeautifulSoup(response, 'html.parser')
         self.source = soup
 

@@ -1,16 +1,28 @@
 import httplib2
 from bs4 import BeautifulSoup
+from selenium import webdriver
 import re
+from const import *
 
 class GetUserPublications():
-    basicUrl1 = "https://suw.biblos.pk.edu.pl/"
-    basicUrl2 = "ajax_displaySearchResults&sId=16453-"
     basicUrl3 = "&rsAt="
     source = ""
     userId = ""
 
     def addId(self, userId):
         self.userId = userId
+
+    def getSource(self):
+        wd = webdriver.Chrome('libs/chromedriver.exe') #later switch to phantomjs
+        wd.get(BASE_URL+PUB_NUM_URL+str(self.userId))
+        #wd.get(BASE_URL+PUBLICATIONS_URL+str(self.userId)+"&rsAt="+"0")
+        #this.source = wd.page_source()
+
+if __name__ == "__main__":
+    x = GetUserPublications()
+    x.addId(3322)
+    x.getSource()
+    #print(x.source)
 
     
 
