@@ -27,7 +27,6 @@ class GetUserId():
             text = str(a.contents)
             text = text[0:30]
             if self.surname in text and self.name in text:
-                print("jest")
                 idUrl = a['href']
                 x = re.compile('\d+')
                 x = re.findall(x, idUrl)
@@ -40,10 +39,4 @@ class GetUserId():
         id = self.findIdBySurname()
         return id
         
-        
-            
-
-if __name__ == "__main__":
-    x = GetUserId()
-    id = x.getId("Góra", "Marta")
-    print(id)
+          
