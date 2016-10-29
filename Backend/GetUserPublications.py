@@ -50,13 +50,14 @@ class GetUserPublications():
         elif self.numbersOfPublications > 21:
             self.page = 0
             self.getSource(self.page)
-            title, typeName, mniswPoints = self.getAllPublications()
+            title, typeName, mniswPoints = self.getPublications()
             pages = self.numbersOfPublications/20
             int(pages)
             while pages!=1:
+                print(pages)
                 self.page += 20
                 self.getSource(self.page)
-                title1, typeName1, mniswPoints1 = self.getAllPublications()
+                title1, typeName1, mniswPoints1 = self.getPublications()
                 title += title1
                 typeName += typeName1
                 mniswPoints += mniswPoints1
