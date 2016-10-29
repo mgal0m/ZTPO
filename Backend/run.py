@@ -4,7 +4,7 @@ from GetUserPublications import *
 
 if __name__ == "__main__":
     x = GetUserId()
-    id = x.getId("Góra", "Marta")
+    id = x.getId("Anielak", "Anna")
     print(id)
     z = GetNumberOfPublications()
     pagenum = z.getNumberOfPublications(id)
