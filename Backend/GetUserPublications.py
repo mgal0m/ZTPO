@@ -7,14 +7,22 @@ class GetUserPublications():
     basicUrl3 = "&rsAt="
     source = ""
     userId = ""
+    numbersOfPublications = 0
+    page = 0
 
     def addId(self, userId):
         self.userId = userId
 
-    def getSource(self):
+    def addNumbersOfPublications(self, numbersOfPublications):
+        self.numbersOfPublications = int(numbersOfPublications)
+
+    def addPageNumbers(self, pageNumbers):
+        self.pageNumbers = pageNumbers
+
+    def getSource(self, page):
         wd = webdriver.Chrome('libs/chromedriver.exe') #later switch to phantomjs
         wd.get(BASE_URL+PUB_NUM_URL+str(self.userId)+"&rel=BPP-author")
-        wd.get(BASE_URL+PUBLICATIONS_URL+str(self.userId)+"&rsAt="+"0")
+        wd.get(BASE_URL+PUBLICATIONS_URL+str(self.userId)+"&rsAt="+str(self.page))
         self.source = BeautifulSoup(wd.page_source, 'html.parser')
 
     def getPublications(self):
@@ -30,9 +38,22 @@ class GetUserPublications():
                 title.append(text[i-7])
                 typeName.append(text[i-5])
         return title, typeName, mniswPoints
+
+    def getAllPublications(self, userId, numbersOfPublications):
+        self.addId(userId)
+        self.addNumbersOfPublications(numbersOfPublications)
+        if self.numbersOfPublications <= 20:
+            self.page = 0
+            self.getSource(self.page)
+            title, typeName, mniswPoints = self.getPublications()
+            return title, typeName, mniswPoints
+        else:
+            pass
+
+
        
 
-
+"""
 if __name__ == "__main__":
     x = GetUserPublications()
     x.addId(3322)
@@ -43,7 +64,7 @@ if __name__ == "__main__":
     print(a)
     print(b)
     print(c)
-
+"""
 
 
 

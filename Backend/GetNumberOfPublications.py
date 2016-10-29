@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 import re
 from const import *
 
-class GetUserPageNumber():
+class GetNumberOfPublications():
     userId = ""
     source = ""
 
@@ -16,17 +16,16 @@ class GetUserPageNumber():
         soup = BeautifulSoup(response, 'html.parser')
         self.source = soup
 
-    def findPageNumbers(self):
+    def findNumbers(self):
         text = str(self.source.find_all('h4'))
-        print(text)
         x = re.compile('\d+')
         pageNumbers = re.findall(x, text)
         return pageNumbers[1]
 
-    def getPageNumbers(self, userId):
+    def getNumberOfPublications(self, userId):
         self.addId(userId)
         self.getSource()
-        pageNumber = self.findPageNumbers()
-        return pageNumber
+        numberOfPublications = self.findNumbers()
+        return numberOfPublications
         
           
