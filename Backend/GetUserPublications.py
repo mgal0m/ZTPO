@@ -56,7 +56,10 @@ class GetUserPublications():
             while pages!=1:
                 self.page += 20
                 self.getSource(self.page)
-                title, typeName, mniswPoints += self.getAllPublications()
+                title1, typeName1, mniswPoints1 = self.getAllPublications()
+                title += title1
+                typeName += typeName1
+                mniswPoints += mniswPoints1
                 pages-=1
             return title, typeName, mniswPoints
 
