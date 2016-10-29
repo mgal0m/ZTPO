@@ -46,28 +46,26 @@ class GetUserPublications():
                 src = row[0]
                 text = src.find_all(text=True)
                 for i, j in enumerate(text):
-                    if j==' Punktacja czasopisma na Liście MNiSW: ':
+                    if j==' typ: ':
+                        typeName.append(text[i+1])
+                        title.append(text[i-1])
+                        continue
+                    elif j==' Punktacja czasopisma na Liście MNiSW: ':
                         mniswPoints.append(text[i+1])
                         continue
                     elif j==' Data wydania: ':
                         publicationDate.append(text[i+1])
                         continue
-                    elif j==' typ: ':
-                        typeName.append(text[i+1])
-                        title.append(text[i-1])
-                        continue
                     elif j==' Forma publikacji: ':
                         publicationForm.append(text[i+1])
                         continue
-                print("starting noning")
-                #fill empty field with None
-                if mniswPoints[-1]==None:
-                    mniswPoints.append(None)
-                    print("none1")
-                if publicationDate[-1]==None:
-                    publicationDate.append(None)
-                if publicationForm[-1]==None:
+                titleMaxIndex = len(title)
+                while titleMaxIndex > len(publicationForm):
                     publicationForm.append(None)
+                while titleMaxIndex > len(publicationDate):
+                    publicationDate.append(None)
+                while titleMaxIndex > len(mniswPoints):
+                    mniswPoints.append(None)
         return title, typeName, publicationForm, publicationDate, mniswPoints
                 
 
