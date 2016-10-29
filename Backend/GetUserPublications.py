@@ -10,6 +10,7 @@ class GetUserPublications():
     userId = ""
     numbersOfPublications = 0
     page = 0
+    wd = webdriver.Chrome('libs/chromedriver.exe') #later switch to phantomjs
 
     def addId(self, userId):
         self.userId = userId
@@ -20,11 +21,12 @@ class GetUserPublications():
     def addPageNumbers(self, pageNumbers):
         self.pageNumbers = pageNumbers
 
+    def startSession(self):
+        self.wd.get(BASE_URL+PUB_NUM_URL+str(self.userId)+"&rel=BPP-author")
+
     def getSource(self, page):
-        wd = webdriver.Chrome('libs/chromedriver.exe') #later switch to phantomjs
-        wd.get(BASE_URL+PUB_NUM_URL+str(self.userId)+"&rel=BPP-author")
-        wd.get(BASE_URL+PUBLICATIONS_URL+str(self.userId)+"&rsAt="+str(self.page))
-        self.source = BeautifulSoup(wd.page_source, 'html.parser')
+        self.wd.get(BASE_URL+PUBLICATIONS_URL+str(self.userId)+"&rsAt="+str(self.page))
+        self.source = BeautifulSoup(self.wd.page_source, 'html.parser')
 
     def getPublications(self):
         rows = []
@@ -37,11 +39,7 @@ class GetUserPublications():
             rows.append(a.contents)
         for a in range(len(rows)):
             if a==0:
-                mniswPoints.append(None)
-                title.append(None)
-                typeName.append(None)
-                publicationDate.append(None)
-                publicationForm.append(None)
+                pass
             else:
                 row = rows[a]
                 src = row[0]
@@ -75,17 +73,22 @@ class GetUserPublications():
         self.addId(userId)
         self.addNumbersOfPublications(numbersOfPublications)
         if self.numbersOfPublications <= 20:
+            print("mniej niz 20")
             self.page = 0
+            self.startSession()
             self.getSource(self.page)
             title, typeName, publicationForm, publicationDate, mniswPoints = self.getPublications()
             return title, typeName, publicationForm, publicationDate, mniswPoints
         elif self.numbersOfPublications > 21:
+            print("wiecej niz 20")
             self.page = 0
+            self.startSession()
             self.getSource(self.page)
             title, typeName, publicationForm, publicationDate, mniswPoints = self.getPublications()
             pages = self.numbersOfPublications/20
-            int(pages)
-            while pages>1:
+            pages = int(pages)
+            while pages>=1:
+                print("petla")
                 print(pages)
                 self.page += 20
                 self.getSource(self.page)
