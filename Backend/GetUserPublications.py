@@ -17,18 +17,19 @@ class GetUserPublications():
         wd.get(BASE_URL+PUBLICATIONS_URL+str(self.userId)+"&rsAt="+"0")
         self.source = BeautifulSoup(wd.page_source, 'html.parser')
 
-
     def getPublications(self):
         text = self.source.find_all(text=True)
         typeIndex = []
         title = []
         typeName = []
+        mniswPoints = []
         for i, j in enumerate(text):
-            if j==' typ: ':
-                typeIndex.append(i)
-                title.append(text[i-1])
-                typeName.append(text[i+1])
-        return title, typeName
+            if j==' Punktacja czasopisma na Liście MNiSW: ':
+                typeIndex.append(i) # do wyjebania?
+                mniswPoints.append(text[i+1])
+                title.append(text[i-7])
+                typeName.append(text[i-5])
+        return title, typeName, mniswPoints
        
 
 
@@ -38,18 +39,12 @@ if __name__ == "__main__":
     x.getSource()
     print("click any key than enter")
     d = input()
-    a, b = x.getPublications()
+    a, b, c = x.getPublications()
     print(a)
     print(b)
+    print(c)
 
 
-"""
-x = soup.find_all(text=True)
-for i, j in enumerate(x):
-	if j==' Punktacja czasopisma na Liście MNiSW: ':
-		print(i)
-
-   """ 
 
 
     

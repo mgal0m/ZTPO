@@ -12,14 +12,21 @@ class GetUserPageNumber():
 
     def getSource(self):
         http = httplib2.Http()
-        status, response = http.request(BASE_URL+PUB_NUM_URL+self.userId)
+        status, response = http.request(BASE_URL+PUB_NUM_URL+self.userId+"&rel=BPP-author")
         soup = BeautifulSoup(response, 'html.parser')
         self.source = soup
 
-    def getPageNumbers(self):
+    def findPageNumbers(self):
         text = str(self.source.find_all('h4'))
+        print(text)
         x = re.compile('\d+')
         pageNumbers = re.findall(x, text)
         return pageNumbers[1]
+
+    def getPageNumbers(self, userId):
+        self.addId(userId)
+        self.getSource()
+        pageNumber = self.findPageNumbers()
+        return pageNumber
         
           
