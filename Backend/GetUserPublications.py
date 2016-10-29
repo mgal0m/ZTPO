@@ -10,7 +10,7 @@ class GetUserPublications():
     userId = ""
     numbersOfPublications = 0
     page = 0
-    wd = webdriver.Chrome('libs/chromedriver.exe') #later switch to phantomjs
+    wd = None
 
     def addId(self, userId):
         self.userId = userId
@@ -22,6 +22,7 @@ class GetUserPublications():
         self.pageNumbers = pageNumbers
 
     def startSession(self):
+        self.wd = webdriver.Chrome('libs/chromedriver.exe') #later switch to phantomjs
         self.wd.get(BASE_URL+PUB_NUM_URL+str(self.userId)+"&rel=BPP-author")
 
     def getSource(self, page):
@@ -73,14 +74,13 @@ class GetUserPublications():
         self.addId(userId)
         self.addNumbersOfPublications(numbersOfPublications)
         if self.numbersOfPublications <= 20:
-            print("mniej niz 20")
             self.page = 0
             self.startSession()
             self.getSource(self.page)
             title, typeName, publicationForm, publicationDate, mniswPoints = self.getPublications()
+            self.wd.close()
             return title, typeName, publicationForm, publicationDate, mniswPoints
         elif self.numbersOfPublications > 21:
-            print("wiecej niz 20")
             self.page = 0
             self.startSession()
             self.getSource(self.page)
@@ -88,7 +88,6 @@ class GetUserPublications():
             pages = self.numbersOfPublications/20
             pages = int(pages)
             while pages>=1:
-                print("petla")
                 print(pages)
                 self.page += 20
                 self.getSource(self.page)
@@ -99,24 +98,9 @@ class GetUserPublications():
                 publicationDate += publicationDate1
                 mniswPoints += mniswPoints1
                 pages-=1
+            self.wd.close()
             return title, typeName, publicationForm, publicationDate, mniswPoints
 
-
-
-       
-
-"""
-if __name__ == "__main__":
-    x = GetUserPublications()
-    x.addId(3322)
-    x.getSource()
-    print("click any key than enter")
-    d = input()
-    a, b, c = x.getPublications()
-    print(a)
-    print(b)
-    print(c)
-"""
 
 
 

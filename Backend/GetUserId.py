@@ -32,21 +32,7 @@ class GetUserId():
                 x = re.findall(x, idUrl)
                 return x[0]
                 break
-
-            """
-        href = re.compile('^userHomepage&uId')
-        idUrl = ""
-        for a in self.source.find_all('a', href=href):
-            print(a.contents)
-            sleep(1)
-            text = str(a.contents)
-            text = text[0:30]
-            if self.surname in text and self.name in text:
-                idUrl = a['href']
-                x = re.compile('\d+')
-                x = re.findall(x, idUrl)
-                return x[0]
-                break """
+        
 
     def getId(self, surname, name):
         self.addSurname(surname, name)
