@@ -1,10 +1,11 @@
 from GetUserId import *
 from GetNumberOfPublications import *
 from GetUserPublications import *
+from unidecode import unidecode
 
 if __name__ == "__main__":
     x = GetUserId()
-    id = x.getId("Kantor", "Ryszard")
+    id = x.getId("Cegielski", "Marcin")
     print(id)
     z = GetNumberOfPublications()
     pagenum = z.getNumberOfPublications(id)

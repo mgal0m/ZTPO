@@ -2,6 +2,7 @@ from bs4 import BeautifulSoup
 from selenium import webdriver
 import re
 from const import *
+from unidecode import unidecode
 
 class GetUserPublications():
     basicUrl3 = "&rsAt="
@@ -47,17 +48,17 @@ class GetUserPublications():
                 text = src.find_all(text=True)
                 for i, j in enumerate(text):
                     if j==' typ: ':
-                        typeName.append(text[i+1])
-                        title.append(text[i-1])
+                        typeName.append(unidecode(text[i+1]))
+                        title.append(unidecode(text[i-1]))
                         continue
                     elif j==' Punktacja czasopisma na Liście MNiSW: ':
-                        mniswPoints.append(text[i+1])
+                        mniswPoints.append(unidecode(text[i+1]))
                         continue
                     elif j==' Data wydania: ':
-                        publicationDate.append(text[i+1])
+                        publicationDate.append(unidecode(text[i+1]))
                         continue
                     elif j==' Forma publikacji: ':
-                        publicationForm.append(text[i+1])
+                        publicationForm.append(unidecode(text[i+1]))
                         continue
                 titleMaxIndex = len(title)
                 while titleMaxIndex > len(publicationForm):
@@ -81,7 +82,7 @@ class GetUserPublications():
         elif self.numbersOfPublications > 21:
             self.page = 0
             self.getSource(self.page)
-            title, typeName, mniswPoints = self.getPublications()
+            title, typeName, publicationForm, publicationDate, mniswPoints = self.getPublications()
             pages = self.numbersOfPublications/20
             int(pages)
             while pages>1:

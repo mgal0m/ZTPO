@@ -12,7 +12,7 @@ class GetNumberOfPublications():
 
     def getSource(self):
         http = httplib2.Http()
-        status, response = http.request(BASE_URL+PUB_NUM_URL+self.userId+"&rel=BPP-author")
+        status, response = http.request(BASE_URL+PUB_NUM_URL+str(self.userId)+"&rel=BPP-author")
         soup = BeautifulSoup(response, 'html.parser')
         self.source = soup
 

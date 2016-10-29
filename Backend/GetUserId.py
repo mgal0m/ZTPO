@@ -17,7 +17,7 @@ class GetUserId():
 
     def getSource(self):
         http = httplib2.Http()
-        status, response = http.request(BASE_URL+AUTHOR_URL+self.firstLetter)
+        status, response = http.request(BASE_URL+AUTHOR_URL+str(self.firstLetter))
         soup = BeautifulSoup(response, 'html.parser')
         self.source = soup
 
