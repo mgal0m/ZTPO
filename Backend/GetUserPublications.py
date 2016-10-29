@@ -26,18 +26,51 @@ class GetUserPublications():
         self.source = BeautifulSoup(wd.page_source, 'html.parser')
 
     def getPublications(self):
-        text = self.source.find_all(text=True)
-        typeIndex = []
+        rows = []
+        mniswPoints = []
         title = []
         typeName = []
-        mniswPoints = []
-        for i, j in enumerate(text):
-            if j==' Punktacja czasopisma na Liście MNiSW: ':
-                typeIndex.append(i) # do wyjebania?
-                mniswPoints.append(text[i+1])
-                title.append(text[i-7])
-                typeName.append(text[i-5])
-        return title, typeName, mniswPoints
+        publicationForm = []
+        publicationDate = []
+        for a in self.source.find_all('td', style="border-bottom:#ddd 1px solid;"):
+            rows.append(a.contents)
+        for a in range(len(rows)):
+            if a==0:
+                mniswPoints.append(None)
+                title.append(None)
+                typeName.append(None)
+                publicationDate.append(None)
+                publicationForm.append(None)
+            else:
+                row = rows[a]
+                src = row[0]
+                text = src.find_all(text=True)
+                for i, j in enumerate(text):
+                    if j==' Punktacja czasopisma na Liście MNiSW: ':
+                        mniswPoints.append(text[i+1])
+                        continue
+                    elif j==' Data wydania: ':
+                        publicationDate.append(text[i+1])
+                        continue
+                    elif j==' typ: ':
+                        typeName.append(text[i+1])
+                        title.append(text[i-1])
+                        continue
+                    elif j==' Forma publikacji: ':
+                        publicationForm.append(text[i+1])
+                        continue
+                print("starting noning")
+                #fill empty field with None
+                if mniswPoints[-1]==None:
+                    mniswPoints.append(None)
+                    print("none1")
+                if publicationDate[-1]==None:
+                    publicationDate.append(None)
+                if publicationForm[-1]==None:
+                    publicationForm.append(None)
+        return title, typeName, publicationForm, publicationDate, mniswPoints
+                
+
 
     def getAllPublications(self, userId, numbersOfPublications):
         self.addId(userId)
@@ -45,8 +78,8 @@ class GetUserPublications():
         if self.numbersOfPublications <= 20:
             self.page = 0
             self.getSource(self.page)
-            title, typeName, mniswPoints = self.getPublications()
-            return title, typeName, mniswPoints
+            title, typeName, publicationForm, publicationDate, mniswPoints = self.getPublications()
+            return title, typeName, publicationForm, publicationDate, mniswPoints
         elif self.numbersOfPublications > 21:
             self.page = 0
             self.getSource(self.page)
@@ -57,12 +90,14 @@ class GetUserPublications():
                 print(pages)
                 self.page += 20
                 self.getSource(self.page)
-                title1, typeName1, mniswPoints1 = self.getPublications()
+                title1, typeName1, publicationForm1, publicationDate1, mniswPoints1 = self.getPublications()
                 title += title1
                 typeName += typeName1
+                publicationForm += publicationForm1
+                publicationDate += publicationDate1
                 mniswPoints += mniswPoints1
                 pages-=1
-            return title, typeName, mniswPoints
+            return title, typeName, publicationForm, publicationDate, mniswPoints
 
 
 
