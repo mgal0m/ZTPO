@@ -13,7 +13,7 @@ def hello():
 
 @app.route('/user', methods=['GET']) #?surname&name
 def getUser():
-    print("Get user started")
+    print("Get user data started")
     if 'name' and 'surname' in request.args:
         surname = request.args['surname']
         name = request.args['name']

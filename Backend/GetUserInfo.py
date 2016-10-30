@@ -14,6 +14,7 @@ class GetUserInfo():
     def getInfo(self):
         data = {}
         userInfoInstance = GetUserId()
+        print("get user id")
         userId = userInfoInstance.getId(self.surname, self.name)
         if userId == None:
             data['id'] = 'None'
@@ -22,10 +23,12 @@ class GetUserInfo():
         else:
             data['id'] = userId
             numberOfPubInstance = GetNumberOfPublications()
+            print("get user publications number")
             pubNumber = numberOfPubInstance.getNumberOfPublications(userId)
             data['pubNumber'] = pubNumber
             json_data = json.dumps(data)
             userPubInstance = GetUserPublications()
+            print("Get user publications list")
             title, typeName, form, date, mniswPoints = userPubInstance.getAllPublications(userId, pubNumber)
             publications = []
             pubNumber = int(pubNumber)

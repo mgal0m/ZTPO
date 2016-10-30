@@ -16,9 +16,6 @@
                     <h1 align="center">Hello!</h1>
                     <br>
                     <h3 align="left">Connected to flask: {{connected}}</h3>
-                    <div ng-show="show2==true" align="left">
-                        <h5>Beta wersja, pobieranie danych moze chwile potrwac xD</h5>
-                    </div>
                     <br>
                     <div align="center">
                         <h4>Nazwisko:
@@ -34,7 +31,11 @@
                         <br><h3>Nie odnaleziono takiego uzytkownika w suw.biblos.pk.edu.pl</h3>
                         <h3>Spróbuj ponownie</h3><br>
                     </div>
-                    <div class="panel input">
+                    <div ng-show="show2==true" align="center">
+                        <h4>Beta wersja, pobieranie danych moze chwile potrwac</h4>
+                        <h5>Ale na pewno się uda!!!</h5>
+                    </div>
+                    <div class="panel input" ng-show="show3==true">
                         <div class="list-group-item input">
                             <h3>ID Pracownika: {{dane.id}}</h3>
                             <h3>Liczba publikacji: {{dane.pubNumber}}</h3>

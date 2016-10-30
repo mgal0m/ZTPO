@@ -88,7 +88,6 @@ class GetUserPublications():
             pages = self.numbersOfPublications/20
             pages = int(pages)
             while pages>=1:
-                print(pages)
                 self.page += 20
                 self.getSource(self.page)
                 title1, typeName1, publicationForm1, publicationDate1, mniswPoints1 = self.getPublications()
