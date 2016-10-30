@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello():
-    return "True"
+    return "True", {'Access-Control-Allow-Origin': '*'}
 
 @app.route('/user', methods=['GET']) #?surname&name
 def getUser():
