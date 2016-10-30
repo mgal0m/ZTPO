@@ -22,7 +22,7 @@ class GetUserPublications():
         self.pageNumbers = pageNumbers
 
     def startSession(self):
-        self.wd = webdriver.Chrome('libs/chromedriver.exe') #later switch to phantomjs
+        self.wd = webdriver.PhantomJS('libs/phantomjs.exe')
         self.wd.get(BASE_URL+PUB_NUM_URL+str(self.userId)+"&rel=BPP-author")
 
     def getSource(self, page):
@@ -61,11 +61,11 @@ class GetUserPublications():
                         continue
                 titleMaxIndex = len(title)
                 while titleMaxIndex > len(publicationForm):
-                    publicationForm.append(None)
+                    publicationForm.append("None")
                 while titleMaxIndex > len(publicationDate):
-                    publicationDate.append(None)
+                    publicationDate.append("None")
                 while titleMaxIndex > len(mniswPoints):
-                    mniswPoints.append(None)
+                    mniswPoints.append("None")
         return title, typeName, publicationForm, publicationDate, mniswPoints
                 
 

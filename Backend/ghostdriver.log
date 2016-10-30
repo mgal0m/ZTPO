@@ -1,12 +1,19 @@
-[INFO  - 2016-10-28T20:02:31.844Z] GhostDriver - Main - running on port 64821
-[INFO  - 2016-10-28T20:02:32.913Z] Session [76949040-9d49-11e6-976c-af371d683d7e] - page.settings - {"XSSAuditingEnabled":false,"javascriptCanCloseWindows":true,"javascriptCanOpenWindows":true,"javascriptEnabled":true,"loadImages":true,"localToRemoteUrlAccessEnabled":false,"userAgent":"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/538.1 (KHTML, like Gecko) PhantomJS/2.1.1 Safari/538.1","webSecurityEnabled":true}
-[INFO  - 2016-10-28T20:02:32.913Z] Session [76949040-9d49-11e6-976c-af371d683d7e] - page.customHeaders:  - {}
-[INFO  - 2016-10-28T20:02:32.913Z] Session [76949040-9d49-11e6-976c-af371d683d7e] - Session.negotiatedCapabilities - {"browserName":"phantomjs","version":"2.1.1","driverName":"ghostdriver","driverVersion":"1.2.0","platform":"windows-7-32bit","javascriptEnabled":true,"takesScreenshot":true,"handlesAlerts":false,"databaseEnabled":false,"locationContextEnabled":false,"applicationCacheEnabled":false,"browserConnectionEnabled":false,"cssSelectorsEnabled":true,"webStorageEnabled":false,"rotatable":false,"acceptSslCerts":false,"nativeEvents":true,"proxy":{"proxyType":"direct"}}
-[INFO  - 2016-10-28T20:02:32.914Z] SessionManagerReqHand - _postNewSessionCommand - New Session Created: 76949040-9d49-11e6-976c-af371d683d7e
-[ERROR - 2016-10-28T20:02:42.999Z] Session [76949040-9d49-11e6-976c-af371d683d7e] - page.onError - msg: ReferenceError: Can't find variable: $
+[INFO  - 2016-10-30T16:38:04.445Z] GhostDriver - Main - running on port 52173
+[INFO  - 2016-10-30T16:38:07.766Z] Session [3cd011f0-9ebf-11e6-a3ee-efeaac544a45] - page.settings - {"XSSAuditingEnabled":false,"javascriptCanCloseWindows":true,"javascriptCanOpenWindows":true,"javascriptEnabled":true,"loadImages":true,"localToRemoteUrlAccessEnabled":false,"userAgent":"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/538.1 (KHTML, like Gecko) PhantomJS/2.1.1 Safari/538.1","webSecurityEnabled":true}
+[INFO  - 2016-10-30T16:38:07.766Z] Session [3cd011f0-9ebf-11e6-a3ee-efeaac544a45] - page.customHeaders:  - {}
+[INFO  - 2016-10-30T16:38:07.766Z] Session [3cd011f0-9ebf-11e6-a3ee-efeaac544a45] - Session.negotiatedCapabilities - {"browserName":"phantomjs","version":"2.1.1","driverName":"ghostdriver","driverVersion":"1.2.0","platform":"windows-7-32bit","javascriptEnabled":true,"takesScreenshot":true,"handlesAlerts":false,"databaseEnabled":false,"locationContextEnabled":false,"applicationCacheEnabled":false,"browserConnectionEnabled":false,"cssSelectorsEnabled":true,"webStorageEnabled":false,"rotatable":false,"acceptSslCerts":false,"nativeEvents":true,"proxy":{"proxyType":"direct"}}
+[INFO  - 2016-10-30T16:38:07.766Z] SessionManagerReqHand - _postNewSessionCommand - New Session Created: 3cd011f0-9ebf-11e6-a3ee-efeaac544a45
+[ERROR - 2016-10-30T16:38:15.136Z] Session [3cd011f0-9ebf-11e6-a3ee-efeaac544a45] - page.onError - msg: ReferenceError: Can't find variable: $
 
   phantomjs://platform/console++.js:263 in error
-[ERROR - 2016-10-28T20:02:42.999Z] Session [76949040-9d49-11e6-976c-af371d683d7e] - page.onError - stack:
-  global code (http://suw.biblos.pk.edu.pl/ajax_displaySearchResults&sId=16453-3322&rsAt=0:4)
+[ERROR - 2016-10-30T16:38:15.137Z] Session [3cd011f0-9ebf-11e6-a3ee-efeaac544a45] - page.onError - stack:
+  global code (https://suw.biblos.pk.edu.pl/ajax_displaySearchResults&sId=16453-3205&rsAt=0:4)
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2016-10-30T16:38:18.714Z] Session [3cd011f0-9ebf-11e6-a3ee-efeaac544a45] - page.onError - msg: ReferenceError: Can't find variable: $
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2016-10-30T16:38:18.714Z] Session [3cd011f0-9ebf-11e6-a3ee-efeaac544a45] - page.onError - stack:
+  global code (https://suw.biblos.pk.edu.pl/ajax_displaySearchResults&sId=16453-3205&rsAt=20:4)
 
   phantomjs://platform/console++.js:263 in error

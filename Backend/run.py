@@ -1,23 +1,31 @@
 from GetUserId import *
 from GetNumberOfPublications import *
 from GetUserPublications import *
-from unidecode import unidecode
+from GetUserInfo import *
+from flask import Flask, request
 
 
+app = Flask(__name__)
+
+@app.route('/')
+def hello():
+    return "True"
+
+@app.route('/user', methods=['GET']) #?surname&name
+def getUser():
+    print("Get user started")
+    if 'name' and 'surname' in request.args:
+        surname = request.args['surname']
+        name = request.args['name']
+        getUserInfoInstance = GetUserInfo(surname, name)
+        data = getUserInfoInstance.getInfo()
+        print("Get user finished")
+        return data, {'Access-Control-Allow-Origin': '*'} 
+    else:
+        return 'Something goes wrong', {'Access-Control-Allow-Origin': '*'} 
+
+    
+    
 if __name__ == "__main__":
-    x = GetUserId()
-    id = x.getId("Kantor", "Ryszard")
-    print(id)
-    z = GetNumberOfPublications()
-    pagenum = z.getNumberOfPublications(id)
-    print(pagenum)
-    c = GetUserPublications()
-    title, typeName, form, date, mnsiwPoints = c.getAllPublications(id, pagenum)
-    #print(title)
-    #print(typeName)
-    #print(form)
-    #print(date)
-    #print(mnsiwPoints)
-    print(len(title))
-    for i in title:
-        print(i)
+    app.run()
+        

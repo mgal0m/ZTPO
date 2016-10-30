@@ -1,0 +1,28 @@
+{
+    "id": 7536, 
+    "pubNumber": 3, 
+    "publications": 
+    [
+        {
+            "title": "Efekt ciaglej deaktywacji uszkodzen w kontynualnej mechanice zniszczenia : praca doktorska",
+            "type": "  rozprawa doktorska ",
+            "form":"None",
+            "points":"None",
+            "date": "  2011 "
+        }, 
+        {
+            "title": "Continuous damage deactivation in modeling of cycle fatigue of engineering materials",
+            "type": "  artykul w czasopismie ",
+            "form": "None",
+            "points": "None",
+            "date": "  2010 "
+        },
+        {
+            "title": "Zastosowanie efektu ciaglej detaktywacji uszkodzenia w modelowaniu zniszczenia niskocyklowego stopu AL-2024",
+            "type": "  artykul w czasopismie ",
+            "form": "None",
+            "points": "None",
+            "date": "  2008 "
+        }
+    ]
+}
